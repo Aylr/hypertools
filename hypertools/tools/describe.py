@@ -67,11 +67,12 @@ def describe(x, reduce_model=None, reduce_params=None, max_dims=None, show=True)
     if max_dims is None:
         max_dims = np.min(map(lambda xi: xi.shape[1], x))
 
-    #
+    # a dictionary to store results
     result = {}
     result['average'] = summary(x, max_dims)
     result['individual'] = [summary(x_i, max_dims) for x_i in x]
 
+    # if show, plot it
     if show:
         fig, ax = plt.subplots()
         ax = sns.tsplot(data=result['individual'], time=[i for i in range(2, max_dims)], err_style="unit_traces")
